@@ -1,0 +1,35 @@
+server:
+  port: 8080
+  undertow:
+    io-threads: 4
+spring:
+  application:
+    name: spring-boot-api-seed-jpa
+  profiles:
+    active: dev
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+    static-locations: classpath:/static/
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+#TOKEN工具
+jwt:
+  header: Authorization
+  secret: mysecret
+  expiration: 604800
+  tokenHead: "cat "
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
+      register: "/api/users/actions/register"
