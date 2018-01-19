@@ -7,9 +7,17 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author jinhuaquan
@@ -23,6 +31,9 @@ public class UserRepositoryTester extends Tester {
 
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private EntityManager entityManager;
 
     private Long id;
 
@@ -41,6 +52,26 @@ public class UserRepositoryTester extends Tester {
         User user = userRepository.findOne(id);
 
         Assert.notNull(user, "Find failed");
+    }
+
+    @Test
+    public void testCriteriaQuery() {
+
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+
+        CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
+
+        Root<User> userRoot = criteriaQuery.from(User.class);
+        List<Predicate> predicateList = new ArrayList<Predicate>();
+        predicateList.add(criteriaBuilder.and(criteriaBuilder.like(userRoot.get("name"), "%jhq%")));
+        predicateList.add(criteriaBuilder.and(criteriaBuilder.ge(userRoot.get("id"), 0)));
+
+        criteriaQuery.where(predicateList.toArray(new Predicate[predicateList.size()]));
+        TypedQuery<User> typedQuery = entityManager.createQuery(criteriaQuery);
+
+        List<User> users = typedQuery.getResultList();
+
+        Assert.isTrue(users.size() > 0, "Find failed");
     }
 
     private User setUser() {

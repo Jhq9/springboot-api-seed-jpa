@@ -28,6 +28,10 @@ public interface RoleRepository extends JpaRepository<Role, Long> {
      */
     List<Role> findRolesByNameIn(List<String> names);
 
+    /**
+     * Find all role and set value to role projection
+     * @return
+     */
     @Query(value = "select r.id as id, r.name as name from Role as r")
     List<RoleProjection> findAllProjection();
 }

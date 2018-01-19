@@ -52,6 +52,7 @@ public class RoleServiceImpl implements RoleService {
         checkArgument(roleRepository.findOne(id) != null, "未找到对应的角色");
         List<User> users = userRepository.findUsersByRolesContains(role);
 
+        //Foreach users who contails deleting role and remove the role from users' role
         users.stream().forEach(user -> {
             List<Role> roles = user.getRoles();
 
