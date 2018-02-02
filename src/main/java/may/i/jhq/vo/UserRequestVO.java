@@ -1,6 +1,5 @@
 package may.i.jhq.vo;
 
-import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -12,8 +11,15 @@ import java.util.List;
  * @create 2018-01-18 下午9:29
  * @desc The request vo of user
  **/
+/**
+ * @apiDefine UserRequestVO
+ * @apiParam {String{1..}} name 用户名称
+ * @apiParam {String{5..20}} email 用户的邮箱地址
+ * @apiParam {String[]} roleNames 用户的角色集合
+ * @apiParam {String{6..12}} password 账户的密码
+ * @apiParam {String{11}} phone 手机号
+ */
 @Data
-@ApiModel(value = "用户请求类", description = "用户注册、更新及查询")
 public class UserRequestVO {
 
     /**

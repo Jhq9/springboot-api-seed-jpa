@@ -7,12 +7,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
 @EnableWebMvc
 @EnableWebSecurity
-@EnableSwagger2
 @EnableGlobalAuthentication
 @SpringBootApplication
 @EntityScan(basePackages = "may.i.jhq.domain")

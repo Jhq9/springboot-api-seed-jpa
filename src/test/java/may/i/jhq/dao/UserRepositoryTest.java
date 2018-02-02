@@ -1,6 +1,6 @@
 package may.i.jhq.dao;
 
-import may.i.jhq.base.Tester;
+import may.i.jhq.base.BaseTest;
 import may.i.jhq.domain.User;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +24,7 @@ import java.util.List;
  * @create 2018-01-19 上午10:10
  * @desc The repository tester of user
  **/
-public class UserRepositoryTester extends Tester {
+public class UserRepositoryTest extends BaseTest {
 
     @Autowired
     private UserRepository userRepository;
@@ -45,7 +45,6 @@ public class UserRepositoryTester extends Tester {
 
         Assert.isTrue((id = user.getId()) > 0, "Save failed");
     }
-
 
     @Test
     public void testFindOne() {

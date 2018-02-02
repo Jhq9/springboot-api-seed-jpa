@@ -13,7 +13,7 @@ import org.springframework.web.context.WebApplicationContext;
  * @desc The controller base tester
  **/
 @WebAppConfiguration
-public class ControllerTester extends Tester{
+public class ApiBaseTest extends BaseTest {
 
     @Autowired
     public WebApplicationContext context;

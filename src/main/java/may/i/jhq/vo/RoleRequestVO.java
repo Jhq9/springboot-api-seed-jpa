@@ -1,6 +1,5 @@
 package may.i.jhq.vo;
 
-import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -10,7 +9,6 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @desc The request VO of role
  **/
 @Data
-@ApiModel(value = "角色请求类", description = "角色新增与请求")
 public class RoleRequestVO {
 
     /**

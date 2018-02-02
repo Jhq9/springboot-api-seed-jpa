@@ -40,7 +40,7 @@ public class RoleServiceImpl implements RoleService {
         Role role = new Role();
         role.setName(requestVO.getName());
 
-        roleRepository.save(role);
+        role = roleRepository.save(role);
         return role.getId();
     }
 
@@ -52,19 +52,19 @@ public class RoleServiceImpl implements RoleService {
         checkArgument(roleRepository.findOne(id) != null, "未找到对应的角色");
         List<User> users = userRepository.findUsersByRolesContains(role);
 
-        //Foreach users who contails deleting role and remove the role from users' role
-        users.stream().forEach(user -> {
-            List<Role> roles = user.getRoles();
+        if (users != null && users.size() > 0) {
+            //Foreach users who contails deleting role and remove the role from users' role
+            users.stream().forEach(user -> {
+                List<Role> roles = user.getRoles();
 
-            roles.remove(role);
+                roles.remove(role);
 
-            user.setRoles(roles);
-        });
-
-        userRepository.save(users);
+                user.setRoles(roles);
+            });
+            userRepository.save(users);
+        }
 
         roleRepository.delete(role);
-
         return Boolean.TRUE;
     }
 
@@ -85,7 +85,7 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public RoleResponseVO getRole(Long id) {
         Role role = roleRepository.findOne(id);
-        checkArgument(roleRepository.findOne(id) != null, "未找到对应的角色");
+        checkArgument(role != null, "未找到对应的角色");
 
         return new RoleResponseVO(role.getId(), role.getName());
     }

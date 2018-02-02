@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Rollback
 //过滤掉身份认证
 @ActiveProfiles("test")
-public abstract class Tester {
+public abstract class BaseTest {
 
 
 
