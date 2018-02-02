@@ -1,0 +1,1 @@
+{  "name": "Spring-boot-api-seed-jpa",  "version": "0.0.0",  "description": "接口文档",  "title": "Spring-boot-api-seed-jpa接口文档",  "url": "http://localhost:8080/",  "sampleUrl": false,  "defaultVersion": "0.0.0",  "apidoc": "0.3.0",  "generator": {    "name": "apidoc",    "time": "2018-02-02T09:19:05.687Z",    "url": "http://apidocjs.com",    "version": "0.17.6"  }}
